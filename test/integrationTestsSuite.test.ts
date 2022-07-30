@@ -49,13 +49,13 @@ describe ("Recommendation test suite", () => {
     expect(response.body.length).not.toBe(null)
   });
 
-  // it ("upvote a recommendation by id", async () => {
-  //   const response = await supertest(app).post(`/recommendations/1/upvote`);
-  //   expect(response.status).toBe(200)
-  // });
+  it ("upvote a recommendation by id", async () => {
+    const response = await supertest(app).post(`/recommendations/1/upvote`);
+    expect(response.status).toBe(200)
+  });
 
-  // it ("downvote a recommendation by id", async () => {
-  //   const response = await supertest(app).post(`/recommendations/1/downvote`);
-  //   expect(response.status).toBe(200)
-  // });
+  it ("downvote a recommendation by id", async () => {
+    const response = await supertest(app).post(`/recommendations/1/downvote`);
+    expect(response.status).toBe(200)
+  });
 });

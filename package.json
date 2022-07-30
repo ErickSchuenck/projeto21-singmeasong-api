@@ -1,12 +1,15 @@
 {
   "name": "typescript-back-template",
   "version": "1.0.0",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "test": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i"
+    "test": "dotenv -e .env.test prisma migrate dev seed && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i"
   },
   "keywords": [],
   "author": "",
