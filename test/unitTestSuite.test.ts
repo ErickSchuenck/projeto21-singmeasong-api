@@ -99,6 +99,15 @@ describe('downvote function test suit', () => {
 
   it('should remove a recommendation', async () => {
 
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    
     const lowScoreRecommendation = {
       id: 9999,
       name: `UNIQUE random name ${new Date().getTime()}`,
@@ -138,6 +147,16 @@ describe('get by id function test suit', () => {
   });
 
   it('given invalid id, should fail to get recommendation', async () => {
+
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
     jest.spyOn(recommendationRepository, 'find')
     .mockImplementationOnce(() : any => {});
 
@@ -149,4 +168,15 @@ describe('get by id function test suit', () => {
       "message": "" 
     })
   });
+});
+
+describe('Find all recommendations', ()=>{
+  it('should get all recommendations', 
+  async () => {
+    jest.spyOn(recommendationRepository, 'findAll')
+    .mockImplementation(() : any => {});
+    await recommendationService.get();
+    expect(recommendationRepository.findAll)
+    .toBeCalled
+  })
 });
