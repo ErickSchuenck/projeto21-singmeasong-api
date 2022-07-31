@@ -9,22 +9,20 @@ const createRecomendationInput = {
 
 const recommendation = {
   id: 1,
-  name: `UNIQUE random name 1 ${new Date().getTime()}`,
+  name: `UNIQUE random name ${new Date().getTime()}`,
   youtubeLink: 'https://youtu.be/vik-PASUVuE',
   score: 8
 }
-
-
 
 jest.mock('../src/repositories/recommendationRepository');
 
 describe('insert function test suit', () => {
   it ('given valid input, should insert a recommendation', async () => {
-    // jest.spyOn(recommendationRepository, "findByName")
-    // .mockImplementationOnce(() : any => {})
+    jest.spyOn(recommendationRepository, "findByName")
+    .mockImplementationOnce(() : any => {})
 
-    // jest.spyOn(recommendationRepository, 'create')
-    // .mockImplementationOnce(() : any => {})
+    jest.spyOn(recommendationRepository, 'create')
+    .mockImplementationOnce(() : any => {})
 
     await recommendationService.insert(createRecomendationInput);
     expect(recommendationRepository.create).toBeCalled;
@@ -64,10 +62,25 @@ describe('upvote function test suit', () => {
     });
 
     jest.spyOn(recommendationRepository, 'updateScore')
+    .mockImplementationOnce(() : any => {});
+
+    expect(recommendationRepository.updateScore).toBeCalled;
+    expect(recommendationRepository.find).toBeCalled();
+  });
+
+  // FIXME a função acima por algum motivo está influenciando na função abaixo
+
+  it('passing invalid value, should fail to upvote a recommendation', async () => {
+    jest.spyOn(recommendationRepository, 'find')
     .mockImplementationOnce(() : any => {
-      return recommendation
+      return false
     });
 
+    const promise = recommendationService.getById(9999)
 
+    expect(promise).rejects.toEqual({
+      "type": "not_found", 
+      "message": "" 
+      });
   });
 });
