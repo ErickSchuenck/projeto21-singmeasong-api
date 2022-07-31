@@ -56,6 +56,7 @@ describe('insert function test suit', () => {
 
 describe('upvote function test suit', () => {
   it('should upvote a recommendation', async () => {
+
     jest.spyOn(recommendationRepository, 'find')
     .mockImplementationOnce(() : any => {
       return recommendation
@@ -64,23 +65,88 @@ describe('upvote function test suit', () => {
     jest.spyOn(recommendationRepository, 'updateScore')
     .mockImplementationOnce(() : any => {});
 
-    expect(recommendationRepository.updateScore).toBeCalled;
-    expect(recommendationRepository.find).toBeCalled();
+    await recommendationService.upvote(1);
+
+    expect(recommendationRepository.updateScore)
+    .toBeCalled;
+    expect(recommendationRepository.find)
+    .toBeCalled();
   });
+});
 
-  // FIXME a função acima por algum motivo está influenciando na função abaixo
-
-  it('passing invalid value, should fail to upvote a recommendation', async () => {
-    jest.spyOn(recommendationRepository, 'find')
+describe('downvote function test suit', () => {
+  it('should only downvote a recommendation', async () => {
+    jest.spyOn(recommendationRepository, 'updateScore')
     .mockImplementationOnce(() : any => {
-      return false
+      return {
+        score : 6
+      }
     });
 
-    const promise = recommendationService.getById(9999)
+    jest.spyOn(recommendationRepository, 'updateScore')
+    .mockImplementationOnce(() : any => {});
 
-    expect(promise).rejects.toEqual({
+    await recommendationService.downvote(1);
+
+    expect(recommendationRepository.updateScore)
+    .toBeCalled();
+    expect(recommendationRepository.find)
+    .toBeCalled();
+    expect(recommendationRepository.remove)
+    .not
+    .toBeCalled
+  });
+
+  it('should remove a recommendation', async () => {
+
+    const lowScoreRecommendation = {
+      id: 9999,
+      name: `UNIQUE random name ${new Date().getTime()}`,
+      youtubeLink: 'https://youtu.be/vik-PASUVuE',
+      score: -6
+    }
+
+    jest.spyOn(recommendationRepository, 'find')
+    .mockImplementationOnce(() : any => {
+      return lowScoreRecommendation
+    });
+
+    jest.spyOn(recommendationRepository, 'updateScore')
+    .mockImplementationOnce(() : any => {
+      return lowScoreRecommendation
+    });
+
+    jest.spyOn(recommendationRepository, 'remove')
+    .mockImplementationOnce(() : any => {});
+
+    await recommendationService.downvote(1);
+
+    expect(recommendationRepository.remove).toBeCalled();
+  });
+});
+
+describe('get by id function test suit', () => {
+  it('should get an id', async () => {
+    jest.spyOn(recommendationRepository, 'find')
+    .mockImplementationOnce(() : any => {
+      return recommendation
+    });
+
+    await recommendationService.getById(1);
+    expect(recommendationRepository.find)
+    .toBeCalled
+  });
+
+  it('given invalid id, should fail to get recommendation', async () => {
+    jest.spyOn(recommendationRepository, 'find')
+    .mockImplementationOnce(() : any => {});
+
+    const promise = await recommendationService.getById(1);
+    expect(promise)
+    .rejects
+    .toEqual({ 
       "type": "not_found", 
       "message": "" 
-      });
+    })
   });
 });
