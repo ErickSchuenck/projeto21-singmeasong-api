@@ -107,7 +107,7 @@ describe('downvote function test suit', () => {
     // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
     // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
     // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    
+
     const lowScoreRecommendation = {
       id: 9999,
       name: `UNIQUE random name ${new Date().getTime()}`,
@@ -178,5 +178,18 @@ describe('Find all recommendations', ()=>{
     await recommendationService.get();
     expect(recommendationRepository.findAll)
     .toBeCalled
-  })
+  });
+});
+
+describe('Get top recommendations', ()=>{
+  it('should call the get amount by score function', 
+  async () =>{
+    jest.spyOn(recommendationRepository, 'getAmountByScore')
+    .mockImplementationOnce(() : any => {})
+
+    await recommendationService.getTop(1);
+    
+    expect(recommendationRepository.getAmountByScore)
+    .toBeCalled
+  });
 });
