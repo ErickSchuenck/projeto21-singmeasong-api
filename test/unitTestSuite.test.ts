@@ -7,35 +7,67 @@ const createRecomendationInput = {
   youtubeLink: 'https://www.youtube.com/watch?v=vik-PASUVuE'
 }
 
-// const invalidCreateRecomendationInput = {
-//   name: `Not unique name`,
-//   youtubeLink: 'https://youtu.be/vik-PASUVuE',
-// }
+const recommendation = {
+  id: 1,
+  name: `UNIQUE random name 1 ${new Date().getTime()}`,
+  youtubeLink: 'https://youtu.be/vik-PASUVuE',
+  score: 8
+}
+
+
 
 jest.mock('../src/repositories/recommendationRepository');
 
 describe('insert function test suit', () => {
   it ('given valid input, should insert a recommendation', async () => {
-    jest.spyOn(recommendationRepository, "findByName")
-    .mockImplementationOnce(() : any => {})
+    // jest.spyOn(recommendationRepository, "findByName")
+    // .mockImplementationOnce(() : any => {})
 
-    jest.spyOn(recommendationRepository, 'create')
-    .mockImplementationOnce(() : any => {})
+    // jest.spyOn(recommendationRepository, 'create')
+    // .mockImplementationOnce(() : any => {})
 
     await recommendationService.insert(createRecomendationInput);
     expect(recommendationRepository.create).toBeCalled;
     expect(recommendationRepository.findByName).toBeCalled;
   });
 
-  it ('given invalid input, should fail insert a recommendation', async () => {
+  it ('should fail insert a duplicated recommendation', async () => {
+
+    const invalidCreateRecomendationInput = {
+    name: `Not unique name`,
+    youtubeLink: 'https://youtu.be/vik-PASUVuE',
+    }
+
     jest.spyOn(recommendationRepository, "findByName")
-    .mockImplementationOnce(() : any => {})
+    .mockImplementationOnce(() : any => {
+      return {
+        id: 1,
+        name: `Not unique name`,
+        youtubeLink: 'https://youtu.be/vik-PASUVuE',
+        upvotes: 0
+      }
+    });
 
-    jest.spyOn(recommendationRepository, 'create')
-    .mockImplementationOnce(() : any => {})
+    const promise = recommendationService.insert(invalidCreateRecomendationInput)
+    expect(promise).rejects.toEqual({
+      message: 'Recommendations names must be unique',
+      type: 'conflict'
+    })
+  });
+});
 
-    await recommendationService.insert(createRecomendationInput);
-    expect(recommendationRepository.create).toBeCalled;
-    expect(recommendationRepository.findByName).toBeCalled;
+describe('upvote function test suit', () => {
+  it('should upvote a recommendation', async () => {
+    jest.spyOn(recommendationRepository, 'find')
+    .mockImplementationOnce(() : any => {
+      return recommendation
+    });
+
+    jest.spyOn(recommendationRepository, 'updateScore')
+    .mockImplementationOnce(() : any => {
+      return recommendation
+    });
+
+
   });
 });
