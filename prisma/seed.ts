@@ -29,6 +29,12 @@ async function main(){
                 youtubeLink: 'https://www.youtube.com/watch?v=H15YC7ICsCw',
                 score: 3
             },
+            {
+                id: 5,
+                name: `Not unique name`,
+                youtubeLink: 'https://www.youtube.com/watch?v=H15YC7ICsCw',
+                score: 3
+            },
         ]
     });
 }

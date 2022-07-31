@@ -38,7 +38,6 @@ describe ("Recommendation test suite", () => {
     expect(response.status).toBe(409)
   });
   
-
   it ("return all the recommendations", async () => {
     const response = await supertest(app).get(`/recommendations/`);
     expect(response.status).toBe(200)
