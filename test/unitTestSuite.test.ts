@@ -123,7 +123,7 @@ describe('downvote function test suit', () => {
   });
 });
 
-describe.only('get by id function test suit', () => {
+describe('get by id function test suit', () => {
   it('should get an id', async () => {
     jest.spyOn(recommendationRepository, 'find')
     .mockImplementationOnce(() : any => {
