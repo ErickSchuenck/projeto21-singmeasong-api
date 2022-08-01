@@ -10,7 +10,8 @@ app.use(cors());
 app.use(express.json());
 app.use(testsRouter);
 app.use("/recommendations", recommendationRouter);
-if (process.env.NODE_ENV === "test"){
+if (process.env.NODE_ENV === "TEST"){
+  console.log('starting server on test mode')
   app.use("/tests", testsRouter);
 } 
 app.use(errorHandlerMiddleware);
