@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1659371851300" clover="3.2.0">
-  <project timestamp="1659371851300" name="All files">
-    <metrics statements="112" coveredstatements="94" conditionals="30" coveredconditionals="18" methods="37" coveredmethods="29" elements="179" coveredelements="141" complexity="0" loc="112" ncloc="112" packages="8" files="13" classes="13"/>
+<coverage generated="1659378423401" clover="3.2.0">
+  <project timestamp="1659378423402" name="All files">
+    <metrics statements="112" coveredstatements="95" conditionals="30" coveredconditionals="19" methods="37" coveredmethods="29" elements="179" coveredelements="143" complexity="0" loc="112" ncloc="112" packages="8" files="13" classes="13"/>
     <package name="src">
-      <metrics statements="10" coveredstatements="9" conditionals="1" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="11" coveredstatements="11" conditionals="1" coveredconditionals="1" methods="0" coveredmethods="0"/>
       <file name="app.ts" path="C:\Users\T-Gamer\Desktop\driven\projetos\tests\sing-me-a-song-main\back-end\src\app.ts">
-        <metrics statements="8" coveredstatements="7" conditionals="1" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="0" coveredmethods="0"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="13" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
       </file>
       <file name="database.ts" path="C:\Users\T-Gamer\Desktop\driven\projetos\tests\sing-me-a-song-main\back-end\src\database.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -92,7 +93,7 @@
       </file>
     </package>
     <package name="src.routers">
-      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="recommendationRouter.ts" path="C:\Users\T-Gamer\Desktop\driven\projetos\tests\sing-me-a-song-main\back-end\src\routers\recommendationRouter.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
@@ -105,10 +106,9 @@
         <line num="12" count="1" type="stmt"/>
       </file>
       <file name="testsRouter.ts" path="C:\Users\T-Gamer\Desktop\driven\projetos\tests\sing-me-a-song-main\back-end\src\routers\testsRouter.ts">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.schemas">
