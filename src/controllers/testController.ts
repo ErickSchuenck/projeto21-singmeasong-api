@@ -7,13 +7,6 @@ async function reset(req: Request, res: Response) {
   res.sendStatus(200);
 }
 
-async function seed(req: Request, res: Response) {
-  await testsService.seed();
-
-  res.sendStatus(200);
-}
-
 export default {
   reset,
-  seed,
 };
