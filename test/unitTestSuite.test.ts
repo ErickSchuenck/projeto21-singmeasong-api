@@ -14,7 +14,9 @@ const recommendation = {
   score: 8
 }
 
-jest.mock('../src/repositories/recommendationRepository');
+
+
+// jest.mock('../src/repositories/recommendationRepository');
 
 describe('insert function test suit', () => {
   it ('given valid input, should insert a recommendation', async () => {
@@ -75,16 +77,16 @@ describe('upvote function test suit', () => {
 });
 
 describe('downvote function test suit', () => {
+  beforeEach(() => {
+    jest.clearAllMocks().resetAllMocks()
+  })
+
   it('should only downvote a recommendation', async () => {
     jest.spyOn(recommendationRepository, 'updateScore')
-    .mockImplementationOnce(() : any => {
-      return {
-        score : 6
-      }
-    });
+    .mockResolvedValue(recommendation);
 
-    jest.spyOn(recommendationRepository, 'updateScore')
-    .mockImplementationOnce(() : any => {});
+    jest.spyOn(recommendationRepository, 'find')
+    .mockResolvedValueOnce(recommendation);
 
     await recommendationService.downvote(1);
 
@@ -109,6 +111,7 @@ describe('downvote function test suit', () => {
     .mockImplementationOnce(() : any => {
       return lowScoreRecommendation
     });
+
 
     jest.spyOn(recommendationRepository, 'updateScore')
     .mockImplementationOnce(() : any => {
