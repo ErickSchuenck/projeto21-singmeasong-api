@@ -14,10 +14,6 @@ const recommendation = {
   score: 8
 }
 
-
-
-// jest.mock('../src/repositories/recommendationRepository');
-
 describe('insert function test suit', () => {
   it ('given valid input, should insert a recommendation', async () => {
     jest.spyOn(recommendationRepository, "findByName")
@@ -127,39 +123,24 @@ describe('downvote function test suit', () => {
   });
 });
 
-describe('get by id function test suit', () => {
+describe.only('get by id function test suit', () => {
   it('should get an id', async () => {
     jest.spyOn(recommendationRepository, 'find')
     .mockImplementationOnce(() : any => {
       return recommendation
     });
-
-    await recommendationService.getById(1);
-    expect(recommendationRepository.find)
-    .toBeCalled
+    const result = await recommendationService.getById(1);
+    expect(result).toEqual(recommendation)
   });
 
   it('given invalid id, should fail to get recommendation', async () => {
-
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    // FIXMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-
     jest.spyOn(recommendationRepository, 'find')
-    .mockImplementationOnce(() : any => {});
+    .mockImplementationOnce(() : any => null);
 
-    const promise = await recommendationService.getById(1);
-    expect(promise)
-    .rejects
-    .toEqual({ 
-      "type": "not_found", 
-      "message": "" 
-    })
+    expect(recommendationService.getById(1)).rejects.toEqual({
+      message: '',
+      type: 'not_found',
+    });
   });
 });
 
